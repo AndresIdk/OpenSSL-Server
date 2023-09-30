@@ -1,12 +1,16 @@
 // express server
-// =============================================================
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
-var app = express();
-var PORT = 3000;
-// Sets up the Express app to handle data parsing
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-// Star Wars Characters (DATA)
-// ============================================================
+const express = require("express");
+const app = express();
+
+// Configura la carpeta estática para servir archivos CSS y otros recursos
+app.use(express.static(__dirname));
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: __dirname });
+});
+
+app.listen(3000, () => {
+    console.log("server started on port 3000");
+});
+
+
